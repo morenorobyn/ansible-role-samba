@@ -1,6 +1,7 @@
 ---
 galaxy_info:
-  author: Larry Smith Jr.
+  author: moreno robyn.
+  role_name: samba
   description: Ansible role to install/configure Samba
   license: MIT
   min_ansible_version: 1.2
