@@ -1,0 +1,9 @@
+- name: Enable service "{{ smbd_deamon }}" 
+  service:
+    name: "{{ smbd_deamon }}" 
+    enabled: yes
+
+- name: Enable service "{{ nmbd_deamon }}" 
+  service:
+    name: "{{ nmbd_deamon }}" 
+    enabled: yes

@@ -1,0 +1,23 @@
+---
+- name: Create Samba shares root directory
+  file:
+    state: directory
+    path: "{{ samba_share_path }}"
+    owner: root
+    group: root
+    mode: '0755'
+  when: samba_shares|length > 0
+  tags: samba
+
+
+
+- name: create_shares | creating shared directories
+  file:
+    path: "{{ samba_share_path + '/' + item['name'] }}"
+    owner: "{{ item['owner']|default(omit) }}"
+    group: "{{ item['group'] }}"
+    mode: "{{ item['folder_perms'] }}"
+    state: directory
+    setype: "{{ item.setype|default('samba_share_t') }}"
+  become: true
+  with_items: "{{ samba_shares }}"

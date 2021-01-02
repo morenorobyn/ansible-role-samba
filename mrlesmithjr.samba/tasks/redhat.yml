@@ -1,0 +1,29 @@
+---
+- name: Redhat | Install Samba packages
+  yum:
+    name: 
+      - samba-common
+      - samba
+      - samba-client
+    state: present
+    
+
+- name: Redhat | Register Samba version
+  shell: "smbd --version | sed 's/Version //'"
+  register: samba_version
+  changed_when: false
+  
+
+# - name: "Installed Samba version:"
+#   debug:
+#     msg: "{{ samba_version }}"
+#   
+
+- name: Redhat | Install SELinux package
+  yum:
+    name: 
+      - python3-libsemanage
+    state: present
+  when: ansible_selinux is defined and ansible_selinux.status == 'enabled'
+  
+
